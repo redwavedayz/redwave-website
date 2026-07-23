@@ -1,229 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="RedWave DayZ - A balanced vanilla-plus survival experience on The Channel." />
-  <title>RedWave DayZ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4" />
-</head>
-<body>
-  <canvas id="interactiveBackground" aria-hidden="true"></canvas>
-<header class="site-header">
-    <a class="brand" href="#home" aria-label="RedWave home">
-      <img class="brand-logo" src="redwave-logo.png" alt="RedWave logo">
-      <span>REDWAVE DAYZ</span>
-    </a>
-
-    <button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
-    <nav id="mainNav">
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-      <a href="#rules">Rules</a>
-      <a href="#status">Status</a>
-      <a href="#join">Join</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-overlay"></div>
-      <div class="hero-grid"></div>
-
-      <div class="hero-content">
-        <p class="eyebrow">PC • VANILLA+</p>
-        <h1>SURVIVE THE<br><span>REDWAVE</span></h1>
-        <p class="hero-copy">
-          A balanced DayZ survival server with custom bunkers, keycards, AI events,
-          hacked crates, basebuilding, and meaningful progression.
-        </p>
-
-        <div class="hero-actions">
-          <button class="primary-button" data-copy="134.255.251.181:2302">
-            Copy Server IP
-          </button>
-          <a class="secondary-button" href="https://discord.gg/YOUR-INVITE" target="_blank" rel="noopener">
-            Join Discord
-          </a>
-        </div>
-
-        <div class="server-strip">
-          <div>
-            <span>SERVER</span>
-            <strong>RedWave US Main</strong>
-          </div>
-          <div>
-            <span>MAP</span>
-            <strong>The Channel</strong>
-          </div>
-          <div>
-            <span>PLAYSTYLE</span>
-            <strong>Vanilla+</strong>
-          </div>
-          <div>
-            <span>SLOTS</span>
-            <strong>100</strong>
-          </div>
-        </div>
-      </div>
-
-      <a class="scroll-cue" href="#about">SCROLL</a>
-    </section>
-
-    <section class="section intro" id="about">
-      <div class="section-heading">
-        <p class="eyebrow">WELCOME TO REDWAVE</p>
-        <h2>Survival with purpose.</h2>
-      </div>
-
-      <div class="intro-grid">
-        <p class="lead">
-          RedWave bridges the gap between vanilla survival and overloaded modded servers.
-          Every system is chosen to add progression without turning DayZ into an arcade lobby wearing camouflage.
-        </p>
-
-        <div class="stat-grid">
-          <article>
-            <strong>4H</strong>
-            <span>Server restarts</span>
-          </article>
-          <article>
-            <strong>1PP</strong>
-            <span>First-person combat</span>
-          </article>
-          <article>
-            <strong>100</strong>
-            <span>Player slots</span>
-          </article>
-          <article>
-            <strong>24/7</strong>
-            <span>Persistent survival</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section dark-section" id="features">
-      <div class="section-heading centered">
-        <p class="eyebrow">SERVER FEATURES</p>
-        <h2>Built for long-term survival.</h2>
-        <p>Enough content to keep players moving, without handing everyone a tank and a shopping mall.</p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card">
-          <span class="feature-number">01</span>
-          <h3>Custom Progression</h3>
-          <p>Keycards, bunkers, toxic zones, hacked crates, stashes, and escalating risk.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-number">02</span>
-          <h3>Dynamic Events</h3>
-          <p>Airdrops, roaming AI, traders, and world events that keep the map active.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-number">03</span>
-          <h3>Basebuilding</h3>
-          <p>Expanded building systems, raid alerts, and balanced raiding mechanics.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-number">04</span>
-          <h3>Group Systems</h3>
-          <p>Map tools, groups, sleeping bags, and coast-focused spawning.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-number">05</span>
-          <h3>Custom Weapons</h3>
-          <p>Carefully selected weapon additions without destroying survival balance.</p>
-        </article>
-        <article class="feature-card">
-          <span class="feature-number">06</span>
-          <h3>Active Administration</h3>
-          <p>Clear rules, responsive support, and a focus on fair play.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section rules-section" id="rules">
-      <div class="rules-layout">
-        <div>
-          <p class="eyebrow">SERVER RULES</p>
-          <h2>Keep it competitive.<br>Keep it fair.</h2>
-          <p class="muted">Replace these sample rules with your final rules before publishing.</p>
-        </div>
-
-        <div class="rules-list">
-          <article>
-            <span>01</span>
-            <div><h3>No cheating or exploiting</h3><p>Third-party tools, duping, glitching, and abuse of bugs are prohibited.</p></div>
-          </article>
-          <article>
-            <span>02</span>
-            <div><h3>No combat logging</h3><p>Do not disconnect to avoid combat, raids, or player interaction.</p></div>
-          </article>
-          <article>
-            <span>03</span>
-            <div><h3>Respect base limits</h3><p>Follow posted building, territory, and object-count restrictions.</p></div>
-          </article>
-          <article>
-            <span>04</span>
-            <div><h3>Use common sense</h3><p>Harassment, hate speech, impersonation, and deliberate disruption are not tolerated.</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section status-section" id="status">
-      <div class="status-card">
-        <div>
-          <p class="eyebrow">SERVER STATUS</p>
-          <h2>RedWave US Main</h2>
-          <p class="status-line"><span class="status-dot"></span> Status shown as online</p>
-        </div>
-
-        <div class="status-details">
-          <div><span>IP Address</span><strong id="serverIp">146.168.41.133:2302</strong></div>
-          <div><span>Query Port</span><strong>2303</strong></div>
-          <div><span>Map</span><strong>The Channel</strong></div>
-          <div><span>Perspective</span><strong>First Person</strong></div>
-        </div>
-
-        <button class="primary-button wide" data-copy="146.168.41.133:2302">Copy Connection Address</button>
-        <p class="small-note">
-          Live player counts require a server-query service or API. This starter version uses a manual status display.
-        </p>
-      </div>
-    </section>
-
-    <section class="section join-section" id="join">
-      <div class="join-card">
-        <p class="eyebrow">READY TO SURVIVE?</p>
-        <h2>Join RedWave.</h2>
-        <p>Connect to the server, join Discord, read the rules, and try not to die in the first ten minutes.</p>
-
-        <div class="hero-actions centered-actions">
-          <button class="primary-button" data-copy="146.168.41.133:2302">Copy Server IP</button>
-          <a class="secondary-button" href="https://discord.gg/wgDtSu8fn2" target="_blank" rel="noopener">Open Discord</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="brand">
-      <img class="brand-logo" src="redwave-logo.png" alt="RedWave logo">
-      <span>REDWAVE DAYZ</span>
-    </div>
-    <p>© <span id="year"></span> RedWave DayZ. Not affiliated with Bohemia Interactive.</p>
-  </footer>
-
-  <div class="toast" id="toast">Server IP copied</div>
-  <script src="script.js?v=3"></script>
-</body>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="RedWave DayZ - A balanced vanilla-plus survival experience on The Channel." />
+      <title>RedWave DayZ</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="styles.css?v=4" />
+   </head>
+   <body>
+      <canvas id="interactiveBackground" aria-hidden="true"></canvas>
+      <header class="site-header">
+         <a class="brand" href="#home" aria-label="RedWave home">
+         <img class="brand-logo" src="redwave-logo.png" alt="RedWave logo">
+         <span>REDWAVE DAYZ</span>
+         </a>
+         <button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false">
+         <span></span><span></span><span></span>
+         </button>
+         <nav id="mainNav">
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#rules">Rules</a>
+            <a href="#status">Status</a>
+            <a href="#join">Join</a>
+         </nav>
+      </header>
+      <main>
+         <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+            <div class="hero-grid"></div>
+            <div class="hero-content">
+               <p class="eyebrow">PC • VANILLA+</p>
+               <h1>SURVIVE THE<br><span>REDWAVE</span></h1>
+               <p class="hero-copy">
+                  A balanced DayZ survival server with custom bunkers, keycards, AI events,
+                  hacked crates, basebuilding, and meaningful progression.
+               </p>
+               <div class="hero-actions">
+                  <button class="primary-button" data-copy="146.168.41.133:2302">
+                  Copy Server IP
+                  </button>
+                  <a class="secondary-button" href="https://discord.gg/wgDtSu8fn2" target="_blank" rel="noopener">
+                  Join Discord
+                  </a>
+               </div>
+               <div class="server-strip">
+                  <div>
+                     <span>SERVER</span>
+                     <strong>RedWave US Main</strong>
+                  </div>
+                  <div>
+                     <span>MAP</span>
+                     <strong id="heroMap">The Channel</strong>
+                  </div>
+                  <div>
+                     <span>PLAYSTYLE</span>
+                     <strong>Vanilla+</strong>
+                  </div>
+                  <div>
+                     <span>SLOTS</span>
+                     <strong id="heroSlots">100</strong>
+                  </div>
+               </div>
+            </div>
+            <a class="scroll-cue" href="#about">SCROLL</a>
+         </section>
+         <section class="section intro" id="about">
+            <div class="section-heading">
+               <p class="eyebrow">WELCOME TO REDWAVE</p>
+               <h2>Survival with purpose.</h2>
+            </div>
+            <div class="intro-grid">
+               <p class="lead">
+                  RedWave bridges the gap between vanilla survival and overloaded modded servers.
+                  Every system is chosen to add progression without turning DayZ into an arcade lobby wearing camouflage.
+               </p>
+               <div class="stat-grid">
+                  <article>
+                     <strong>4H</strong>
+                     <span>Server restarts</span>
+                  </article>
+                  <article>
+                     <strong>1PP</strong>
+                     <span>First-person combat</span>
+                  </article>
+                  <article>
+                     <strong>100</strong>
+                     <span>Player slots</span>
+                  </article>
+                  <article>
+                     <strong>24/7</strong>
+                     <span>Persistent survival</span>
+                  </article>
+               </div>
+            </div>
+         </section>
+         <section class="section dark-section" id="features">
+            <div class="section-heading centered">
+               <p class="eyebrow">SERVER FEATURES</p>
+               <h2>Built for long-term survival.</h2>
+               <p>Enough content to keep players moving, without handing everyone a tank and a shopping mall.</p>
+            </div>
+            <div class="feature-grid">
+               <article class="feature-card">
+                  <span class="feature-number">01</span>
+                  <h3>Custom Progression</h3>
+                  <p>Keycards, bunkers, toxic zones, hacked crates, stashes, and escalating risk.</p>
+               </article>
+               <article class="feature-card">
+                  <span class="feature-number">02</span>
+                  <h3>Dynamic Events</h3>
+                  <p>Airdrops, roaming AI, traders, and world events that keep the map active.</p>
+               </article>
+               <article class="feature-card">
+                  <span class="feature-number">03</span>
+                  <h3>Basebuilding</h3>
+                  <p>Expanded building systems, raid alerts, and balanced raiding mechanics.</p>
+               </article>
+               <article class="feature-card">
+                  <span class="feature-number">04</span>
+                  <h3>Group Systems</h3>
+                  <p>Map tools, groups, sleeping bags, and coast-focused spawning.</p>
+               </article>
+               <article class="feature-card">
+                  <span class="feature-number">05</span>
+                  <h3>Custom Weapons</h3>
+                  <p>Carefully selected weapon additions without destroying survival balance.</p>
+               </article>
+               <article class="feature-card">
+                  <span class="feature-number">06</span>
+                  <h3>Active Administration</h3>
+                  <p>Clear rules, responsive support, and a focus on fair play.</p>
+               </article>
+            </div>
+         </section>
+         <section class="section rules-section" id="rules">
+            <div class="rules-layout">
+               <div>
+                  <p class="eyebrow">SERVER RULES</p>
+                  <h2>Keep it competitive.<br>Keep it fair.</h2>
+                  <p class="muted">Replace these sample rules with your final rules before publishing.</p>
+               </div>
+               <div class="rules-list">
+                  <article>
+                     <span>01</span>
+                     <div>
+                        <h3>No cheating or exploiting</h3>
+                        <p>Third-party tools, duping, glitching, and abuse of bugs are prohibited.</p>
+                     </div>
+                  </article>
+                  <article>
+                     <span>02</span>
+                     <div>
+                        <h3>No combat logging</h3>
+                        <p>Do not disconnect to avoid combat, raids, or player interaction.</p>
+                     </div>
+                  </article>
+                  <article>
+                     <span>03</span>
+                     <div>
+                        <h3>Respect base limits</h3>
+                        <p>Follow posted building, territory, and object-count restrictions.</p>
+                     </div>
+                  </article>
+                  <article>
+                     <span>04</span>
+                     <div>
+                        <h3>Use common sense</h3>
+                        <p>Harassment, hate speech, impersonation, and deliberate disruption are not tolerated.</p>
+                     </div>
+                  </article>
+               </div>
+            </div>
+         </section>
+         <section class="section status-section" id="status">
+            <div class="status-card">
+               <div>
+                  <p class="eyebrow">SERVER STATUS</p>
+                  <h2 id="liveServerName">RedWave US Main</h2>
+                  <p class="status-line">
+                     <span class="status-dot" id="statusDot"></span>
+                     <span id="serverStatus">Loading...</span>
+                  </p>
+               </div>
+               <div class="status-details">
+                  <div>
+                     <span>Players</span>
+                     <strong id="livePlayers">Loading...</strong>
+                  </div>
+                  <div>
+                     <span>Map</span>
+                     <strong id="liveMap">Loading...</strong>
+                  </div>
+                  <div>
+                     <span>Game Time</span>
+                     <strong id="liveTime">Loading...</strong>
+                  </div>
+                  <div>
+                     <span>Uptime</span>
+                     <strong id="liveUptime">Loading...</strong>
+                  </div>
+                  <div>
+                     <span>Version</span>
+                     <strong id="liveVersion">Loading...</strong>
+                  </div>
+                  <div>
+                     <span>Restart</span>
+                     <strong id="liveRestart">Loading...</strong>
+                  </div>
+                  <div>
+                     <span>Mods</span>
+                     <strong id="liveMods">Loading...</strong>
+                  </div>
+                  <div>
+                     <span>Location</span>
+                     <strong id="liveLocation">Loading...</strong>
+                  </div>
+               </div>
+               <button class="primary-button wide" data-copy="146.168.41.133:2302">Copy Connection Address</button>
+               <p class="small-note" id="statusUpdated">
+                  Connecting to RedWave live server...
+               </p>
+            </div>
+         </section>
+         <section class="section join-section" id="join">
+            <div class="join-card">
+               <p class="eyebrow">READY TO SURVIVE?</p>
+               <h2>Join RedWave.</h2>
+               <p>Connect to the server, join Discord, read the rules, and try not to die in the first ten minutes.</p>
+               <div class="hero-actions centered-actions">
+                  <button class="primary-button" data-copy="146.168.41.133:2302">Copy Server IP</button>
+                  <a class="secondary-button" href="https://discord.gg/wgDtSu8fn2" target="_blank" rel="noopener">Open Discord</a>
+               </div>
+            </div>
+         </section>
+      </main>
+      <footer>
+         <div class="brand">
+            <img class="brand-logo" src="redwave-logo.png" alt="RedWave logo">
+            <span>REDWAVE DAYZ</span>
+         </div>
+         <p>© <span id="year"></span> RedWave DayZ. Not affiliated with Bohemia Interactive.</p>
+      </footer>
+      <div class="toast" id="toast">Server IP copied</div>
+      <script src="script.js?v=4"></script>
+   </body>
 </html>
