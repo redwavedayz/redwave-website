@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RedWave DayZ store for priority queue, colored clan tags, and server donations.">
+  <title>RedWave Store | Priority Queue & Clan Tags</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body class="store-page">
+  <canvas id="interactiveBackground" aria-hidden="true"></canvas>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="RedWave home">
+      <img class="brand-logo" src="redwave-logo.png" alt="RedWave logo">
+      <span>REDWAVE DAYZ</span>
+    </a>
+    <button class="menu-button" id="menuButton" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav id="mainNav" aria-label="Main navigation">
+      <a href="index.html#features">Features</a>
+      <a href="store.html" aria-current="page">Store</a>
+      <a href="index.html#status">Status</a>
+      <a href="index.html#rules">Rules</a>
+      <a href="https://discord.gg/wgDtSu8fn2" target="_blank" rel="noopener">Discord</a>
+      <button class="nav-login" id="discordLoginButton" type="button">Sign in with Discord</button>
+    </nav>
+  </header>
+  <main class="store-page-main">
+    <section class="store-hero">
+      <div class="store-hero-content">
+        <p class="eyebrow">REDWAVE STORE</p>
+        <h1>SUPPORT THE<br><span>SERVER</span></h1>
+        <p>Choose priority queue access, order a colored clan tag, or make a custom donation. Checkout will use PayPal once the secure account system is connected.</p>
+      </div>
+    </section>
+    <section class="section store-section" id="store">
+<div class="section-heading centered">
+<p class="eyebrow">REDWAVE STORE</p>
+<h2>Support the server. Get useful perks.</h2>
+<p>PayPal checkout will be connected after Discord login, Steam linking, and the purchase backend are deployed.</p>
+</div>
+<div class="store-notice">
+<div><strong>Account required</strong><span>Sign in with Discord and link your SteamID64 before buying priority queue.</span></div>
+<button class="secondary-button" id="storeLoginButton" type="button">Sign in with Discord</button>
+</div>
+<div class="product-grid">
+<article class="product-card">
+<div class="product-top"><span class="product-type">PRIORITY QUEUE</span><span class="product-duration">1 MONTH</span></div>
+<h3>Monthly Priority</h3>
+<div class="price"><span>$</span>19.99</div>
+<p>Skip the standard queue for one month on RedWave US Main.</p>
+<ul><li>One Steam account</li><li>Automatic CFTools fulfillment</li><li>Starts after successful payment</li></ul>
+<div class="purchase-choice" data-product="priority-1-month">
+<label><input checked="" name="priority1" type="radio" value="one_time"/> One-time</label>
+<label><input name="priority1" type="radio" value="recurring"/> Auto-renew monthly</label>
+</div>
+<button class="primary-button wide purchase-button" data-product="priority-1-month">Continue with PayPal</button>
+</article>
+<article class="product-card featured-product">
+<span class="best-value">BEST VALUE • SAVE $19.98</span>
+<div class="product-top"><span class="product-type">PRIORITY QUEUE</span><span class="product-duration">3 MONTHS</span></div>
+<h3>Quarter Priority</h3>
+<div class="price"><span>$</span>39.99</div>
+<p>Three months of priority queue at a much lower effective monthly price.</p>
+<ul><li>One Steam account</li><li>Automatic CFTools fulfillment</li><li>Best long-term value</li></ul>
+<div class="purchase-choice" data-product="priority-3-month">
+<label><input checked="" name="priority3" type="radio" value="one_time"/> One-time</label>
+<label><input name="priority3" type="radio" value="recurring"/> Auto-renew every 3 months</label>
+</div>
+<button class="primary-button wide purchase-button" data-product="priority-3-month">Continue with PayPal</button>
+</article>
+<article class="product-card">
+<div class="product-top"><span class="product-type">COSMETIC</span><span class="product-duration">ONE-TIME</span></div>
+<h3>Colored Clan Tag</h3>
+<div class="price"><span>$</span>9.99</div>
+<p>Give your clan a distinctive colored tag in game.</p>
+<ul><li>Manual fulfillment</li><li>Discord ticket confirmation</li><li>No gameplay advantage</li></ul>
+<label class="select-label" for="clanTagColor">Preferred color</label>
+<select class="store-select" id="clanTagColor">
+<option value="red">Red</option><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option><option value="orange">Orange</option><option value="yellow">Yellow</option><option value="custom">Request another color</option>
+</select>
+<button class="primary-button wide purchase-button" data-product="clan-tag">Continue with PayPal</button>
+</article>
+<article class="product-card donation-card">
+<div class="product-top"><span class="product-type">DONATION</span><span class="product-duration">CUSTOM</span></div>
+<h3>Support RedWave</h3>
+<div class="donation-symbol">♥</div>
+<p>Help cover hosting, development, services, and future server improvements. Donations provide no in-game benefit.</p>
+<div class="donation-presets">
+<button data-donation="5" type="button">$5</button><button data-donation="10" type="button">$10</button><button data-donation="25" type="button">$25</button><button data-donation="50" type="button">$50</button>
+</div>
+<label class="select-label" for="donationAmount">Custom amount</label>
+<div class="amount-input"><span>$</span><input id="donationAmount" min="1" placeholder="Enter amount" step="1" type="number"/></div>
+<button class="primary-button wide" id="donateButton" type="button">Donate with PayPal</button>
+</article>
+</div>
+<p class="store-footnote">Purchases are linked to the Discord and Steam accounts used during checkout. Clan tags are manually fulfilled. Priority queue becomes active after payment confirmation.</p>
+</section>
+    <section class="section account-section" id="account">
+<div class="account-card">
+<div><p class="eyebrow">PLAYER ACCOUNT</p><h2>One identity. Every purchase.</h2><p>Discord authentication and Steam linking will connect purchases to the correct in-game account.</p></div>
+<div class="account-preview">
+<div class="avatar-placeholder">RW</div>
+<div><span class="account-label">STATUS</span><strong>Not signed in</strong><p>Sign in to link Steam, view purchases, and manage renewals.</p></div>
+<button class="primary-button" id="accountLoginButton" type="button">Sign in with Discord</button>
+</div>
+</div>
+</section>
+  </main>
+  <footer>
+<div class="brand"><img alt="RedWave logo" class="brand-logo" src="redwave-logo.png"/><span>REDWAVE DAYZ</span></div>
+<div class="footer-links"><a href="store.html">Store</a><a href="index.html#status">Status</a><a href="index.html#rules">Rules</a><a href="https://discord.gg/wgDtSu8fn2" rel="noopener" target="_blank">Discord</a></div>
+<p>© <span id="year"></span> RedWave DayZ. Not affiliated with Bohemia Interactive.</p>
+</footer>
+  <div class="toast" id="toast" role="status">Server IP copied</div>
+  <div aria-hidden="true" class="modal" id="comingSoonModal">
+<div class="modal-backdrop" data-close-modal=""></div>
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal-card" role="dialog">
+<button aria-label="Close" class="modal-close" data-close-modal="" type="button">×</button>
+<p class="eyebrow">BACKEND REQUIRED</p>
+<h2 id="modalTitle">Checkout is not connected yet.</h2>
+<p id="modalMessage">This front-end is ready, but Discord OAuth, Steam linking, PayPal checkout, and CFTools fulfillment still need to be added to your Cloudflare Worker.</p>
+<button class="primary-button wide" data-close-modal="" type="button">Close</button>
+</div>
+</div>
+  <script src="script.js?v=6"></script>
+</body>
+</html>
