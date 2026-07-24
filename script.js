@@ -248,33 +248,47 @@ document.querySelectorAll(".purchase-button").forEach((button) => {
       return;
     }
 
-    if (button.dataset.product?.startsWith("priority") && !account.steam_linked) {
+    const productCode = button.dataset.product;
+
+    if (productCode?.startsWith("priority") && !account.steam_linked) {
       showToast("Link Steam before buying priority queue");
       return;
     }
 
-    const product = button.dataset.product;
-    let detail = "";
-
-    if (product === "priority-1-month") {
-      detail =
-        document.querySelector('input[name="priority1"]:checked')?.value === "recurring"
-          ? "monthly auto-renewal"
-          : "one-time 1-month purchase";
-    } else if (product === "priority-3-month") {
-      detail =
-        document.querySelector('input[name="priority3"]:checked')?.value === "recurring"
-          ? "3-month auto-renewal"
-          : "one-time 3-month purchase";
-    } else if (product === "clan-tag") {
-      detail = `clan tag in ${
-        document.getElementById("clanTagColor")?.value || "selected"
-      } color`;
+    let billing = "one_time";
+    if (productCode === "priority-1-month") {
+      billing =
+        document.querySelector('input[name="priority1"]:checked')?.value ||
+        "one_time";
+    } else if (productCode === "priority-3-month") {
+      billing =
+        document.querySelector('input[name="priority3"]:checked')?.value ||
+        "one_time";
     }
 
-    openModal(
-      `Your ${detail} is account-ready. PayPal order creation and payment verification are the next phase.`
-    );
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = "Opening PayPal...";
+
+    try {
+      const result = await apiFetch("/api/paypal/create-checkout", {
+        method: "POST",
+        body: JSON.stringify({
+          product_code: productCode,
+          billing,
+          clan_color:
+            document.getElementById("clanTagColor")?.value || null,
+          return_to: `${location.origin}${location.pathname}`,
+        }),
+      });
+
+      location.assign(result.approve_url);
+    } catch (error) {
+      console.error("Unable to start PayPal checkout:", error);
+      showToast(error.message.replaceAll("-", " "));
+      button.disabled = false;
+      button.textContent = originalText;
+    }
   });
 });
 
@@ -291,24 +305,108 @@ document.querySelectorAll("[data-donation]").forEach((button) => {
 });
 
 const donateButton = document.getElementById("donateButton");
+
 if (donateButton) {
   donateButton.addEventListener("click", async () => {
     const amount = Number(donationAmount?.value || 0);
+
     if (amount < 1) {
       showToast("Enter a donation amount of at least $1");
       return;
     }
 
     const account = await loadAccount();
+
     if (!account) {
       showToast("Sign in with Discord before donating");
       return;
     }
 
-    openModal(
-      `Your $${amount.toFixed(2)} donation is account-ready. PayPal checkout is the next phase.`
-    );
+    const originalText = donateButton.textContent;
+    donateButton.disabled = true;
+    donateButton.textContent = "Opening PayPal...";
+
+    try {
+      const result = await apiFetch("/api/paypal/create-checkout", {
+        method: "POST",
+        body: JSON.stringify({
+          product_code: "donation",
+          amount,
+          billing: "one_time",
+          return_to: `${location.origin}${location.pathname}`,
+        }),
+      });
+
+      location.assign(result.approve_url);
+    } catch (error) {
+      console.error("Unable to start donation:", error);
+      showToast(error.message.replaceAll("-", " "));
+      donateButton.disabled = false;
+      donateButton.textContent = originalText;
+    }
   });
+}
+
+async function processPayPalReturn() {
+  const params = new URLSearchParams(location.search);
+
+  if (params.get("paypal_cancelled")) {
+    params.delete("paypal_cancelled");
+    history.replaceState(
+      null,
+      "",
+      `${location.pathname}${params.toString() ? `?${params}` : ""}`
+    );
+    showToast("PayPal checkout cancelled");
+    return;
+  }
+
+  const mode = params.get("paypal_mode");
+
+  if (mode === "order" && params.get("token")) {
+    try {
+      showToast("Confirming PayPal payment...");
+      await apiFetch("/api/paypal/capture-order", {
+        method: "POST",
+        body: JSON.stringify({ order_id: params.get("token") }),
+      });
+      showToast("Payment completed");
+    } catch (error) {
+      console.error("PayPal capture failed:", error);
+      showToast(`Payment confirmation failed: ${error.message}`);
+    }
+  }
+
+  if (mode === "subscription" && params.get("subscription_id")) {
+    try {
+      await apiFetch("/api/paypal/finalize-subscription", {
+        method: "POST",
+        body: JSON.stringify({
+          subscription_id: params.get("subscription_id"),
+        }),
+      });
+      showToast("Subscription activated");
+    } catch (error) {
+      console.error("Subscription check failed:", error);
+      showToast(`Subscription check failed: ${error.message}`);
+    }
+  }
+
+  if (mode) {
+    [
+      "paypal_mode",
+      "token",
+      "PayerID",
+      "subscription_id",
+      "ba_token",
+    ].forEach((key) => params.delete(key));
+
+    history.replaceState(
+      null,
+      "",
+      `${location.pathname}${params.toString() ? `?${params}` : ""}`
+    );
+  }
 }
 
 const backgroundCanvas = document.getElementById("interactiveBackground");
@@ -606,6 +704,7 @@ async function updateServerStatus() {
 }
 
 processAuthHash();
+processPayPalReturn();
 loadAccount();
 updateServerStatus();
 setInterval(updateServerStatus, 15000);
