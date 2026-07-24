@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RedWave DayZ administration dashboard.">
+  <title>RedWave Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body class="admin-page">
+  <canvas id="interactiveBackground" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="RedWave home">
+      <img class="brand-logo" src="redwave-logo.png" alt="RedWave logo">
+      <span>REDWAVE DAYZ</span>
+    </a>
+
+    <nav aria-label="Admin navigation">
+      <a href="index.html">Home</a>
+      <a href="store.html">Store</a>
+      <a href="admin.html" aria-current="page">Admin</a>
+      <button class="nav-login" id="adminLogoutButton" type="button">Log out</button>
+    </nav>
+  </header>
+
+  <main class="admin-main">
+    <section class="admin-hero">
+      <div>
+        <p class="eyebrow">REDWAVE CONTROL CENTER</p>
+        <h1>ADMIN<br><span>DASHBOARD</span></h1>
+        <p>Manage purchases, player accounts, subscriptions, and manual fulfillment from one place.</p>
+      </div>
+      <div class="admin-session-card">
+        <span>Signed in as</span>
+        <strong id="adminName">Loading...</strong>
+        <small id="adminDiscordId"></small>
+      </div>
+    </section>
+
+    <section id="adminDenied" class="admin-denied" hidden>
+      <h2>Administrator access required</h2>
+      <p>This Discord account is not listed in the Worker variable <code>ADMIN_DISCORD_IDS</code>.</p>
+      <a class="primary-button" href="store.html">Return to Store</a>
+    </section>
+
+    <section id="adminContent" hidden>
+      <div class="admin-stats">
+        <article class="stat-card">
+          <span>Revenue Today</span>
+          <strong id="statRevenueToday">$0.00</strong>
+        </article>
+        <article class="stat-card">
+          <span>Revenue This Month</span>
+          <strong id="statRevenueMonth">$0.00</strong>
+        </article>
+        <article class="stat-card">
+          <span>Total Revenue</span>
+          <strong id="statRevenueTotal">$0.00</strong>
+        </article>
+        <article class="stat-card">
+          <span>Active Priority</span>
+          <strong id="statActivePriority">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Active Subscriptions</span>
+          <strong id="statSubscriptions">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Pending Clan Tags</span>
+          <strong id="statClanTags">0</strong>
+        </article>
+        <article class="stat-card">
+          <span>Registered Users</span>
+          <strong id="statUsers">0</strong>
+        </article>
+      </div>
+
+      <section class="admin-panel">
+        <div class="admin-panel-header">
+          <div>
+            <p class="eyebrow">PURCHASE MANAGEMENT</p>
+            <h2>Recent purchases</h2>
+          </div>
+          <button class="secondary-button" id="refreshAdminButton" type="button">Refresh</button>
+        </div>
+
+        <div class="admin-filters">
+          <input id="purchaseSearch" type="search" placeholder="Search Discord or Steam ID">
+          <select id="purchaseProduct">
+            <option value="">All products</option>
+            <option value="donation">Donations</option>
+            <option value="priority-1-month">Priority 1 Month</option>
+            <option value="priority-3-month">Priority 3 Months</option>
+            <option value="clan-tag">Clan Tags</option>
+          </select>
+          <select id="purchaseStatus">
+            <option value="">All payment statuses</option>
+            <option value="completed">Completed</option>
+            <option value="created">Created</option>
+            <option value="refunded">Refunded</option>
+          </select>
+          <button class="secondary-button" id="applyPurchaseFilters" type="button">Apply</button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Player</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Fulfillment</th>
+                <th>Expiry</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="purchaseTableBody">
+              <tr><td colspan="7">Loading purchases...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-panel">
+        <div class="admin-panel-header">
+          <div>
+            <p class="eyebrow">PLAYER DIRECTORY</p>
+            <h2>Users</h2>
+          </div>
+        </div>
+
+        <div class="admin-filters">
+          <input id="userSearch" type="search" placeholder="Search username, Discord ID, or Steam ID">
+          <button class="secondary-button" id="applyUserSearch" type="button">Search</button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Discord</th>
+                <th>Discord ID</th>
+                <th>Steam ID</th>
+                <th>Purchases</th>
+                <th>Total Spent</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <tr><td colspan="6">Loading users...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="admin.js?v=1"></script>
+</body>
+</html>
