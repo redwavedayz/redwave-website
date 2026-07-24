@@ -146,7 +146,20 @@ function setSignedOutView() {
       "Sign in to link Steam, view purchases, and manage renewals.";
   }
 
-  [discordLoginButton, storeLoginButton, accountLoginButton].forEach((button) => {
+  
+async function revealAdminLink() {
+  const link = document.getElementById("adminNavLink");
+  if (!link || !getSessionToken()) return;
+
+  try {
+    await apiFetch("/api/admin/dashboard");
+    link.hidden = false;
+  } catch {
+    link.hidden = true;
+  }
+}
+
+[discordLoginButton, storeLoginButton, accountLoginButton].forEach((button) => {
     if (button) {
       button.hidden = false;
       button.textContent = "Sign in with Discord";
@@ -176,7 +189,20 @@ function setSignedInView(account) {
       : "Discord connected. Link Steam before purchasing priority queue.";
   }
 
-  [discordLoginButton, storeLoginButton, accountLoginButton].forEach((button) => {
+  
+async function revealAdminLink() {
+  const link = document.getElementById("adminNavLink");
+  if (!link || !getSessionToken()) return;
+
+  try {
+    await apiFetch("/api/admin/dashboard");
+    link.hidden = false;
+  } catch {
+    link.hidden = true;
+  }
+}
+
+[discordLoginButton, storeLoginButton, accountLoginButton].forEach((button) => {
     if (button) button.hidden = true;
   });
 
@@ -203,6 +229,19 @@ async function loadAccount() {
       showToast("Unable to load account");
     }
     return null;
+  }
+}
+
+
+async function revealAdminLink() {
+  const link = document.getElementById("adminNavLink");
+  if (!link || !getSessionToken()) return;
+
+  try {
+    await apiFetch("/api/admin/dashboard");
+    link.hidden = false;
+  } catch {
+    link.hidden = true;
   }
 }
 
@@ -706,5 +745,6 @@ async function updateServerStatus() {
 processAuthHash();
 processPayPalReturn();
 loadAccount();
+revealAdminLink();
 updateServerStatus();
 setInterval(updateServerStatus, 15000);
