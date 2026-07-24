@@ -1,4 +1,4 @@
-const REDWAVE_API = "https://redwave-api.redwavedayz.workers.dev";
+const REDWAVE_API = "https://api.redwavedayz.com";
 const REDWAVE_STATUS_API = `${REDWAVE_API}/status`;
 const SESSION_STORAGE_KEY = "redwave_session";
 
