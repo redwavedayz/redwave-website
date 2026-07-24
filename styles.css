@@ -1093,3 +1093,68 @@ footer p {
 		display: block !important
 	}
 }
+
+/* ===== DEDICATED STORE PAGE ===== */
+.site-header nav a[aria-current="page"] {
+	color: #fff
+}
+
+.store-page-main {
+	padding-top: 76px
+}
+
+.store-hero {
+	position: relative;
+	min-height: 52vh;
+	display: grid;
+	align-items: end;
+	padding: 110px 24px 72px;
+	background: linear-gradient(180deg, rgba(3, 8, 8, .25), rgba(8, 13, 14, .82));
+	border-bottom: 1px solid var(--line)
+}
+
+.store-hero:before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(0, 0, 0, .62), rgba(0, 0, 0, .12));
+	pointer-events: none
+}
+
+.store-hero-content {
+	position: relative;
+	z-index: 2;
+	width: min(var(--max), 100%);
+	margin: auto
+}
+
+.store-hero h1 {
+	max-width: 800px;
+	margin-bottom: 22px;
+	font-family: "Black Ops One", Impact, sans-serif;
+	font-size: clamp(58px, 9vw, 112px);
+	font-weight: 400;
+	line-height: .88;
+	letter-spacing: -.025em
+}
+
+.store-hero h1 span {
+	color: var(--accent)
+}
+
+.store-hero p:last-child {
+	max-width: 690px;
+	color: #cbd3cf;
+	font-size: clamp(16px, 2vw, 20px)
+}
+
+.store-page .store-section {
+	border-top: 0
+}
+
+@media(max-width:600px) {
+	.store-hero {
+		min-height: 44vh;
+		padding: 95px 18px 55px
+	}
+}
