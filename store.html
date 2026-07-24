@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body class="store-page">
   <canvas id="interactiveBackground" aria-hidden="true"></canvas>
@@ -101,10 +101,18 @@
     <section class="section account-section" id="account">
 <div class="account-card">
 <div><p class="eyebrow">PLAYER ACCOUNT</p><h2>One identity. Every purchase.</h2><p>Discord authentication and Steam linking will connect purchases to the correct in-game account.</p></div>
-<div class="account-preview">
-<div class="avatar-placeholder">RW</div>
-<div><span class="account-label">STATUS</span><strong>Not signed in</strong><p>Sign in to link Steam, view purchases, and manage renewals.</p></div>
-<button class="primary-button" id="accountLoginButton" type="button">Sign in with Discord</button>
+<div class="account-preview" id="accountPreview">
+<div class="avatar-placeholder" id="accountAvatar">RW</div>
+<div>
+  <span class="account-label">STATUS</span>
+  <strong id="accountStatus">Not signed in</strong>
+  <p id="accountDetails">Sign in to link Steam, view purchases, and manage renewals.</p>
+</div>
+<div class="account-actions">
+  <button class="primary-button" id="accountLoginButton" type="button">Sign in with Discord</button>
+  <button class="secondary-button" id="linkSteamButton" type="button" hidden>Link Steam Account</button>
+  <button class="secondary-button" id="logoutButton" type="button" hidden>Log out</button>
+</div>
 </div>
 </div>
 </section>
@@ -125,6 +133,6 @@
 <button class="primary-button wide" data-close-modal="" type="button">Close</button>
 </div>
 </div>
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>
